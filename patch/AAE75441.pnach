@@ -1,0 +1,428 @@
+gametitle=GTA V Legacy Alpha
+comment=GTA V Legacy base code
+
+//------------------------------------------------Fixes------------------------------------------------//
+
+//Linear Filtering for License Plates
+patch=1,EE,204A48A4,extended,34630002 ori $v1, 2 //RWLINEARFILTER
+
+//Fixed ammo for melee weapons in cheats
+patch=1,EE,2059D88C,extended,24060001 li $s2 1 //knife
+patch=1,EE,2059D998,extended,24060001 li $s2 1 //knife
+patch=1,EE,2059DB60,extended,24060001 li $s2 1 //chainsaw
+patch=1,EE,2059DC34,extended,24060001 li $s2 1 //chainsaw
+patch=1,EE,2059F67C,extended,24060001 li $s2 1 //parachute
+patch=1,EE,2059F3BC,extended,24060001 li $s2 1 //katana
+
+//014C cargen counter fix (by spaceeinstein)
+patch=1,EE,20295AF0,extended,2C61FFFF //slti => sltiu
+patch=1,EE,20295AF4,extended,10000004 //beqz => b
+
+// Don't clean the car BEFORE Pay 'n Spray doors close, as it gets cleaned later again anyway!
+patch=1,EE,202E41CC,extended,00000000 nop
+
+// Fixed muzzleflash not showing from last bullet
+patch=1,EE,204071F4,extended,00000000 nop
+
+// Help boxes showing with big message
+// Game seems to assume they can show together
+patch=1,EE,202AE3A0,extended,00000000 nop
+
+// Impound garages working correctly
+patch=1,EE,201C6088,extended,0C0BAA58 jal CGarages::IsPointWithinAnyGarage(CVector &)
+patch=1,EE,201C63C0,extended,0C0BAA58 jal CGarages::IsPointWithinAnyGarage(CVector &)
+patch=1,EE,201C6510,extended,0C0BAA58 jal CGarages::IsPointWithinAnyGarage(CVector &)
+
+// Impounding after busted works
+patch=1,EE,202A09A4,extended,00000000 nop
+
+//FuckCarCompletely not fixing panels
+patch=1,EE,20162E40,extended,00000000 nop
+
+// Weapon icon fix (crosshairs mess up rwRENDERSTATEZWRITEENABLE)
+patch=1,EE,202AAB44,extended,00000000 nop
+patch=1,EE,202AB284,extended,00000000 nop
+patch=1,EE,202AB2B4,extended,00000000 nop
+
+//Fix 4th texture memory leak on effects
+patch=1,EE,203D4D50,extended,8E240018
+patch=1,EE,203D4D64,extended,AE200018
+
+//-------------------------------------------------HUD-------------------------------------------------//
+
+patch=0,EE,202AB9B8,extended,3C024419 //Money Y Pos
+patch=0,EE,20663BE8,extended,41f00000 //Money X Pos
+//patch=0,EE,20663bc4,extended,3fa66666 //Money Height
+patch=0,EE,20663bc8,extended,3ee66666 //Money Width
+
+patch=0,EE,202ABA94,extended,24060032 //Ammo X Pos
+patch=0,EE,202ABA90,extended,24050263 //Ammo Y Pos
+patch=0,EE,202AA0B0,extended,24040002 //Set Ammo Justify
+
+patch=0,EE,202B00B4,extended,0c0aa8b4 //Enable Wanted
+patch=0,EE,202AA7B0,extended,2a220005 //Limit Stars to 5
+patch=0,EE,202AA37C,extended,24040002 //Fix Wanted Font Style
+patch=0,EE,202AA4C4,extended,24060004 //Set Wanted Color
+patch=0,EE,20663C00,extended,3f666666 //Wanted Height
+patch=0,EE,20663C04,extended,3ecccccd //Wanted Width
+patch=0,EE,20663C08,extended,41400000 //Wanted X Pos
+patch=0,EE,202AA398,extended,24030263 //Wanted Y Pos
+patch=0,EE,20663C0C,extended,3f8a3d71 //Wanted Shadow Height
+patch=0,EE,20663C10,extended,3ef5c28f //Wanted Shadow Width
+patch=0,EE,202AA78C,extended,3c023fc0 //Wanted Vertical Padding
+
+patch=0,EE,202AF58C,extended,24040003 //Set Wasted/Busted to Pricedown font
+patch=0,EE,202AF654,extended,24060000 //Set Wasted Colour
+patch=0,EE,20663480,extended,3fa66666 //Set Wasted Width
+patch=0,EE,202AA374,extended,24040000
+
+patch=0,EE,2026E204,extended,24050067 //Radar sea section red
+patch=0,EE,2026E208,extended,2406009b //Radar sea section green
+patch=0,EE,2026E20C,extended,240700d5 //Radar sea section blue
+patch=0,EE,2026E214,extended,240800FF //Radar sea section alpha
+
+patch=0,EE,2026E29C,extended,240500FF //Radar texture section red
+patch=0,EE,2026E2A4,extended,240600FF //Radar texture section green
+patch=0,EE,2026E2A8,extended,240700FF //Radar texture section blue
+patch=0,EE,2026E2B0,extended,240800FF //Radar texture section alpha
+
+patch=0,EE,2026E03C,extended,3c0842BC //Radar Width
+patch=0,EE,2026E080,extended,3c054298 //Radar Height
+patch=0,EE,2026E04C,extended,3c0642AE //Radar X Pos
+patch=0,EE,2026E0A0,extended,3c0443BF //Radar Y Pos
+
+//-----------------------------------------------Controls----------------------------------------------//
+
+patch=0,EE,2024A044,extended,8482000E //Accelerate with R2
+patch=0,EE,2024A04C,extended,8482000E //Accelerate with R2
+
+patch=0,EE,20249984,extended,8482000A //Break with L2
+patch=0,EE,2024998C,extended,8482000A //Break with L2
+
+patch=0,EE,20249348,extended,84850008 //Set Plane Left Flap to L1
+patch=0,EE,20249354,extended,84820030 //Set Plane Left Flap to L1
+patch=0,EE,20249380,extended,8482000C //Set Plane Left Flap to L1
+patch=0,EE,20249398,extended,84820034 //Set Plane Left Flap to L1
+
+patch=0,EE,202493E8,extended,8485000C //Set Plane Right Flap to R1
+patch=0,EE,202493F4,extended,84820034 //Set Plane Right Flap to R1
+patch=0,EE,20249420,extended,84820008 //Set Plane Right Flap to R1
+patch=0,EE,20249438,extended,84820030 //Set Plane Right Flap to R1
+
+patch=0,EE,2024983C,extended,84820020 //Set Vehicle Weapon to Cross
+patch=0,EE,2024984C,extended,84820048 //Set Vehicle Weapon to Cross
+patch=0,EE,20249774,extended,84820020 //Set Plane Weapon to Cross
+patch=0,EE,204CBFD8,extended,0C0924CC //Fix Jetpack Right Steering
+patch=0,EE,2017A074,extended,0c0929a0 //Hydra Aim using Square Button
+
+patch=0,EE,20249488,extended,84820026 //Set LookBehind NewState Button to R3
+patch=0,EE,202494A4,extended,8482004E //Set LookBehind OldState Button to R3
+patch=0,EE,202494B8,extended,84820026 //Set LookBehind NewState Button to R3
+patch=0,EE,202494D4,extended,8482004E //Set LookBehind OldState Button to R3
+patch=0,EE,20202600,extended,00000000 //Disable LookLeft and LookRight
+
+
+//-------------------------------------------------Menu------------------------------------------------//
+
+patch=0,EE,20242904,extended,24050090 //li $a1, 0x90 | Display Button Red
+patch=0,EE,20242908,extended,240600ee //li $a2, 0xee | Display Button Green
+patch=0,EE,2024290c,extended,24070090 //li $a3, 0x90 | Display Button Blue
+
+patch=0,EE,20242888,extended,24050090 //li $a1, 0x90 | Gallery Button Red
+patch=0,EE,2024288c,extended,240600ee //li $a2, 0xee | Gallery Button Green
+patch=0,EE,20242890,extended,24070090 //li $a3, 0x90 | Gallery Button Blue
+
+patch=0,EE,2024280C,extended,24050090 //li $a1, 0x90 | Audio Button Red
+patch=0,EE,20242810,extended,240600ee //li $a2, 0xee | Audio Button Green
+patch=0,EE,20242814,extended,24070090 //li $a3, 0x90 | Audio Button Blue
+
+patch=0,EE,20242790,extended,24050090 //li $a1, 0x90 | Controller Button Red
+patch=0,EE,20242794,extended,240600ee //li $a2, 0xee | Controller Button Green
+patch=0,EE,20242798,extended,24070090 //li $a3, 0x90 | Controller Button Blue
+
+patch=0,EE,20242714,extended,24050090 //li $a1, 0x90 | Stats Button Red
+patch=0,EE,20242718,extended,240600ee //li $a2, 0xee | Stats Button Green
+patch=0,EE,2024271C,extended,24070090 //li $a3, 0x90 | Stats Button Blue
+
+patch=0,EE,20242698,extended,24050090 //li $a1, 0x90 | Map Button Red
+patch=0,EE,2024269c,extended,240600ee //li $a2, 0xee | Map Button Green
+patch=0,EE,202426a0,extended,24070090 //li $a3, 0x90 | Map Button Blue
+
+patch=0,EE,2024261C,extended,24050090 //li $a1, 0x90 | Brief Button Red
+patch=0,EE,20242620,extended,240600ee //li $a2, 0xee | Brief Button Green
+patch=0,EE,20242624,extended,24070090 //li $a3, 0x90 | Brief Button Blue
+
+patch=0,EE,202425A0,extended,24050090 //li $a1, 0x90 | Game Button Red
+patch=0,EE,202425A4,extended,240600ee //li $a2, 0xee | Game Button Green
+patch=0,EE,202425A8,extended,24070090 //li $a3, 0x90 | Game Button Blue
+
+patch=0,EE,202425D0,extended,2402001b //Set Game Label Y Pos
+patch=0,EE,2024264C,extended,2402001b //Set Brief Label Y Pos
+patch=0,EE,202426C8,extended,2402001b //Set Map Label Y Pos
+patch=0,EE,20242744,extended,2402001b //Set Stats Label Y Pos
+patch=0,EE,202428B8,extended,2402001b //Set Controller Label Y Pos
+patch=0,EE,2024283C,extended,2402001b //Set Audio Label Y Pos
+patch=0,EE,202427C0,extended,2402001b //Set Gallery Label Y Pos
+patch=0,EE,20242934,extended,2402001b //Set Display Label Y Pos
+
+//Hide Menu Titles
+patch=0,EE,206019A0,extended,00000000
+patch=0,EE,20601700,extended,00000000
+patch=0,EE,20601A80,extended,00000000
+patch=0,EE,206018C0,extended,00000000
+patch=0,EE,20601620,extended,00000000
+patch=0,EE,20602A40,extended,00000000
+patch=0,EE,20601540,extended,00000000
+patch=0,EE,206017E0,extended,00000000
+
+//Zoom Minimap and remove bounds
+patch=0,EE,2023892c,extended,3c0243e0 //lui $v0, 448.0
+patch=0,EE,20238920,extended,3c034370 //lui $v1, 240.0
+
+//Remove map bounds
+patch=0,EE,20238AA8,extended,3c020000 //lui $v0, $zero
+patch=0,EE,20238A90,extended,3c020000 //lui $v0, $zero
+patch=0,EE,20238ACC,extended,3c020000 //lui $v0, $zero
+patch=0,EE,20238A64,extended,3c020000 //lui $v0, $zero
+
+
+patch=0,EE,202681F8,extended,24060004 //Set Map Crosshair vertical color
+patch=0,EE,20268240,extended,24060004 //Set Map Crosshair horizontal color
+patch=0,EE,20239500,extended,c78c8ba4 //Redirect Map Location Y Scale
+
+patch=0,EE,20239554,extended,24040001 //Redirect Map Location orientation
+patch=0,EE,20239558,extended,2603FDA8 //Redirect Map Location Pos X
+
+patch=0,EE,20239704,extended,240500FF //Set blips legend R
+patch=0,EE,20239708,extended,240600FF //Set blips legend G
+patch=0,EE,2023970C,extended,240700FF //Set blips legend B
+
+
+patch=0,EE,20239734,extended,3c024402 //Set blips legend X stretch
+patch=0,EE,2023977C,extended,3c024402 //Set blips legend X stretch
+patch=0,EE,20239720,extended,3c0242C0 //Set blips legend Y stretch
+patch=0,EE,20239790,extended,3c0241c8 //Set blips legend Y stretch
+patch=0,EE,20239680,extended,3c024420 //Set blips legend wrap x
+
+patch=0,EE,202395F0,extended,3C020000 //Remove blip legend rect
+patch=0,EE,20239658,extended,00000000 //Remove blip legend text
+
+patch=0,EE,2023954C,extended,24040001 //Set Map screen location edge width
+patch=0,EE,202394C4,extended,24040002 //Set Map screen location font
+
+//Brief Background draw stretch
+patch=0,EE,202340E8,extended,3c0243e0 //lui     $v0, 0x43e0
+patch=0,EE,202340EC,extended,44826000 //mtc1    $v0, $f12
+patch=0,EE,202340F0,extended,0c08ece4 //jal     sub_23B390
+patch=0,EE,202340F4,extended,0200202d //move    $a0, $s0
+patch=0,EE,202340F8,extended,3c024420 //lui     $v0, 0x4420
+patch=0,EE,202340FC,extended,0200202d //move    $a0, $s0
+patch=0,EE,20234100,extended,44826000 //mtc1    $v0, $f12
+patch=0,EE,20234104,extended,0c08ece0 //jal     sub_23B380
+patch=0,EE,20234108,extended,46000506 //mov.s   $f20, $f0
+patch=0,EE,2023410C,extended,3c024420 //lui     $v0, 0x4420
+patch=0,EE,20234110,extended,44820800 //mtc1    $v0, $f1
+patch=0,EE,20234114,extended,00000000 //nop
+patch=0,EE,20234118,extended,46000801 //sub.s   $f0, $f1, $f0
+patch=0,EE,2023411C,extended,e7a00080 //swc1    $f0, 0xA0+var_20($sp)
+patch=0,EE,20234120,extended,e6740000 //swc1    $f20, 0($s3)
+patch=0,EE,20234124,extended,ae420000 //sw      $v0, 0($s2)
+patch=0,EE,20234128,extended,10000077 //b       def_2340E0
+patch=0,EE,2023412C,extended,ae200000 //sw      $zero, 0($s1)
+patch=0,EE,20234130,extended,00000000 //nop
+patch=0,EE,20234134,extended,00000000 //nop
+
+//New game Background draw stretch
+patch=0,EE,20234138,extended,3c0243e0 //lui     $v0, 0x43e0
+patch=0,EE,2023413c,extended,44826000 //mtc1    $v0, $f12
+patch=0,EE,20234140,extended,0c08ece4 //jal     sub_23B390
+patch=0,EE,20234144,extended,0200202d //move    $a0, $s0
+patch=0,EE,20234148,extended,3c024420 //lui     $v0, 0x4420
+patch=0,EE,2023414c,extended,0200202d //move    $a0, $s0
+patch=0,EE,20234150,extended,44826000 //mtc1    $v0, $f12
+patch=0,EE,20234154,extended,0c08ece0 //jal     sub_23B380
+patch=0,EE,20234158,extended,46000506 //mov.s   $f20, $f0
+patch=0,EE,2023415c,extended,3c024420 //lui     $v0, 0x4420
+patch=0,EE,20234160,extended,44820800 //mtc1    $v0, $f1
+patch=0,EE,20234164,extended,00000000 //nop
+patch=0,EE,20234168,extended,46000801 //sub.s   $f0, $f1, $f0
+patch=0,EE,2023416c,extended,e7a00080 //swc1    $f0, 0xA0+var_20($sp)
+patch=0,EE,20234170,extended,e6740000 //swc1    $f20, 0($s3)
+patch=0,EE,20234174,extended,ae420000 //sw      $v0, 0($s2)
+patch=0,EE,20234178,extended,10000063 //b       def_2340E0
+patch=0,EE,2023417c,extended,ae200000 //sw      $zero, 0($s1)
+patch=0,EE,20234180,extended,00000000 //nop
+patch=0,EE,20234184,extended,00000000 //nop
+
+//Audio backgrounnd
+patch=0,EE,20234188,extended,3c020000 //lui $v0, 512.0
+patch=0,EE,20234198,extended,3c020000 //lui $v0, 512.0
+
+patch=0,EE,202341D0,extended,3c0243e0 //lui $v0, 448.0
+patch=0,EE,202341e0,extended,3c024420 //lui $v0, 512.0
+patch=0,EE,202341F4,extended,3c030000 //lui $v1, 448.0
+patch=0,EE,202341F8,extended,3c0243a0 //lui $v0, 448.0
+
+//Display background
+patch=0,EE,20234188,extended,3c0243e0 //lui $v0, 448.0
+patch=0,EE,20234198,extended,3c024420 //lui $v0, 640.0
+
+//Controller background
+patch=0,EE,20234234,extended,3c0243e0 //lui $v0, 448.0
+patch=0,EE,20234244,extended,3c024420 //lui $v0, 640.0
+patch=0,EE,20234258,extended,3c024420 //lui $v0, 640.0
+
+//Background
+patch=0,EE,2023427C,extended,3c0243e0 //lui $v0, 448.0
+patch=0,EE,2023428C,extended,3c024420 //lui $v0, 640.0
+patch=0,EE,202342A0,extended,3c024420 //lui $v0, 640.0
+
+//Background
+patch=0,EE,202342C4,extended,3c0243e0 //lui $v0, 448.0
+patch=0,EE,202342d4,extended,3c024420 //lui $v0, 640.0
+patch=0,EE,202342E8,extended,3c024420 //lui $v0, 640.0
+
+patch=0,EE,20234A44,extended,24040001 //SetMenuTextBody
+
+patch=0,EE,20234A84,extended,240500FF //SetSelectedMenuItemRed
+patch=0,EE,20234A88,extended,240600FF //SetSelectedMenuItemGreen
+patch=0,EE,20234A8C,extended,240700FF //SetSelectedMenuItemBlue
+
+patch=0,EE,20234AA8,extended,240500A0 //SetNonSelectedMenuItemRed
+patch=0,EE,20234AAC,extended,240600A0 //SetNonSelectedMenuItemGreen
+patch=0,EE,20234AB0,extended,240700A0 //SetNonSelectedMenuItemBlue
+
+patch=0,EE,20234A7C,extended,24050080 //Set Selected wo/Menu Item Red
+//patch=0,EE,20234A88,extended,24060080 //Set Selected wo/Menu Item Green
+//patch=0,EE,2023478C,extended,24070080 //Set Selected wo/Menu Item Blue
+
+
+patch=0,EE,20663A8C,extended,3ecccccd //SetMenuItemsWidth
+patch=0,EE,20242190,extended,3c023ecc //SetMenuLabelsWidth
+patch=0,EE,202422D8,extended,3c0343a0 //Menu Labels Up X Pos
+patch=0,EE,202422D4,extended,3c0641a0 //Menu Labels Down X Pos
+patch=0,EE,20242300,extended,46010000 //Set X Pos Label to Sum
+
+//Remove forward 4-item limit per menu row
+patch=0,EE,2023F1C8,extended,24020002
+patch=0,EE,2023F1D4,extended,24020003
+patch=0,EE,2023F1E0,extended,24020004
+patch=0,EE,2023F1EC,extended,24020005
+patch=0,EE,2023F1F8,extended,24020006
+patch=0,EE,2023F204,extended,24020007
+patch=0,EE,2023F210,extended,24020008
+patch=0,EE,2023F21C,extended,24020001
+
+//Remove reverse 4-item limit per menu row
+patch=0,EE,2023F0B8,extended,24020008
+patch=0,EE,2023F0C4,extended,24020001
+patch=0,EE,2023F0D0,extended,24020002
+patch=0,EE,2023F0DC,extended,24020003
+patch=0,EE,2023F0E8,extended,24020004
+patch=0,EE,2023F0F4,extended,24020005
+patch=0,EE,2023F100,extended,24020006
+patch=0,EE,2023F10C,extended,24020007
+
+//Neutralize pause menu vertical button switch
+patch=0,EE,2023F32C,extended,24020001
+patch=0,EE,2023F338,extended,24020002
+patch=0,EE,2023F344,extended,24020003
+patch=0,EE,2023F350,extended,24020004
+patch=0,EE,2023F35C,extended,24020005
+patch=0,EE,2023F368,extended,24020006
+patch=0,EE,2023F374,extended,24020007
+patch=0,EE,2023F380,extended,24020008
+
+patch=0,EE,202412B8,extended,24040001 //Set Control Texts Font
+patch=0,EE,20241318,extended,24060004 //Set Control Texts Color
+
+patch=0,EE,20241990,extended,3C024408 //Set Select(X) on Map Section X Pos
+patch=0,EE,20241998,extended,3C0243CC //Set Select(X) on Map Section Y Pos
+
+patch=0,EE,20241A3C,extended,3C024408 //Set Select(X) on Stats Section X Pos
+patch=0,EE,20241A44,extended,3C0243CC //Set Select(X) on Stats Section Y Pos
+
+patch=0,EE,20241AC0,extended,3C024408 //Set Select(X) on Audio Section X Pos
+patch=0,EE,20241AC8,extended,3C0243CC //Set Select(X) on Audio Section Y Pos
+
+patch=0,EE,20241B38,extended,3C024408 //Set Select(X) on Display Section X Pos
+patch=0,EE,20241B40,extended,3C0243CC //Set Select(X) on Display Section Y Pos
+
+patch=0,EE,20241B6C,extended,3C024408 //Set Select(X) on Game/Controller Section X Pos
+patch=0,EE,20241B74,extended,3C0243CC //Set Select(X) on Game/Controller Section Y Pos
+
+patch=0,EE,20241BC8,extended,3C0243F6 //Set Back(Δ) X Pos
+patch=0,EE,20241BD0,extended,3C0243CC //Set Back(Δ) Y Pos
+patch=0,EE,20241BD4,extended,44826800 //convert this crap to a float
+patch=0,EE,20241BDC,extended,00000000 //convert this crap to a float
+//P.S.: You can use that to deal with fucked typing stuff
+
+patch=0,EE,20241E24,extended,3C0443F1 //Set Move(^|V) X Pos
+patch=0,EE,20241E28,extended,3C0343CC //Set Move(^|v) Y Pos
+
+patch=0,EE,20241E54,extended,3C0443F1 //Set Move(<|>) X Pos
+patch=0,EE,20241E58,extended,3C0343CC //Set Move(<|>) Y Pos
+
+patch=0,EE,20241C84,extended,3C0443F1 //Set Adjust(<|>|^|v) X Pos
+patch=0,EE,20241C88,extended,3C0343CC //Set Adjust(<|>|^|v) Y Pos
+
+patch=0,EE,20241CF0,extended,3C0443CD //Set Adjust(<|>) X Pos
+patch=0,EE,20241CF4,extended,3C0343CC //Set Adjust(<|>) Y Pos
+patch=0,EE,20241CF8,extended,44836800 //convert this crap to a float
+patch=0,EE,20241D00,extended,0C0A9B88 //convert this crap to a float
+patch=0,EE,20241D04,extended,0040202D //convert this crap to a float
+patch=0,EE,20241D0C,extended,00000000 //convert this crap to a float
+
+patch=0,EE,202414DC,extended,3C024400 //Set ~x~ Legend on/off on Map screen x
+patch=0,EE,202414E4,extended,3C0243CC //Set ~x~ Legend on/off on Map screen y
+patch=0,EE,202414E8,extended,44826800 //convert this crap to a float
+patch=0,EE,202414F0,extended,00000000 //convert this crap to a float
+
+patch=0,EE,2024215C,extended,24040003 //Set Menu Fonts
+patch=0,EE,2024216C,extended,24040001 //Set Menu Items edge
+
+patch=0,EE,20239C18,extended,240500ff //Set Slider Selected to White
+patch=0,EE,20239C1C,extended,240600ff //Set Slider Selected to White
+patch=0,EE,20239C20,extended,240700ff //Set Slider Selected to White
+
+patch=0,EE,20239C5C,extended,24050050 //Set Slider Background Red
+patch=0,EE,20239C60,extended,24060050 //Set Slider Background Green
+patch=0,EE,20239C64,extended,24070050 //Set Slider Background Blue
+patch=0,EE,20239C6C,extended,240800ff //Set Slider Background Alpha
+
+patch=0,EE,20235860,extended,3c024120 //SetMaximumBarSize - Brightness
+patch=0,EE,20235874,extended,3c024120 //SetMinimumBarSize - Brightness
+patch=0,EE,202358A0,extended,3C024100 //SetUniqueBarWidth - Brightness
+
+patch=0,EE,20235920,extended,3c024120 //SetMaximumBarSize - Radio
+patch=0,EE,20235934,extended,3c024120 //SetMinimumBarSize - Radio
+patch=0,EE,20235960,extended,3C024100 //SetUniqueBarWidth - Radio
+
+patch=0,EE,202359FC,extended,3c024120 //SetMaximumBarSize - SFX
+patch=0,EE,202359E8,extended,3c024120 //SetMinimumBarSize - SFX
+patch=0,EE,20235A28,extended,3C024100 //SetUniqueBarWidth - SFX
+
+//------------------------------------------Folder Structure-------------------------------------------//
+
+patch=0,EE,205FA1A0,extended,72746e69 //INTRO\VLOGOS.RGM
+patch=0,EE,205FA1A4,extended,6c762f6f
+patch=0,EE,205FA1A8,extended,736f676f
+patch=0,EE,205FA1AC,extended,6d67722e 
+patch=0,EE,205FA1B0,extended,00000000
+
+patch=0,EE,205FA1C0,extended,72746e69 //INTRO\VLOAD.RGM
+patch=0,EE,205FA1C4,extended,6c762f6f
+patch=0,EE,205FA1C8,extended,2e64616f
+patch=0,EE,205FA1CC,extended,006d6772
+
+//---------------------------------------------Experimental--------------------------------------------//
+
+//patch=0,EE,2039B53C,extended,24040001 //Set VSync Mode to 60 FPS
+//patch=0,EE,2066659C,extended,40000000 //Decrease LOD distance to 2.0
+//patch=0,EE,206665A0,extended,3fc00000 //Decrease lowLOD distance to 1.5
+
+patch=0,EE,20246F18,extended,00000000 //Disable ped lock-on texture
+patch=0,EE,20246DC8,extended,0C1224E0 //Render grass
+
+
+
