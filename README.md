@@ -48,6 +48,8 @@ In addition to a trainer, it is also a sample script for a menu style based on G
 
 In this section the majority of GTA V Legacy patches are explained, raw patches in .pnach(PCSX2) format, created with months of reverse engineering and calculated redeployment in Assembly, most patches are designed to work without violating the logic and size of the original code.
 
+[GTA V Legacy base code patch](https://github.com/DanielSant0s/GTAVLStuff/blob/main/patch/AAE75441.pnach)
+
 - Vanilla Fixes: The first section of the patch has fixes designed to fix problems and defects in the original game, created based on SilentPatch.
 - HUD Patches: Here is code working over the top of the HUD to make it "widescreen" and also tweak fonts and measurements to look like GTA V.
 ![hud-screen](https://user-images.githubusercontent.com/47725160/137575280-4bb37ba9-bf36-425e-b1c6-07504a99dbcf.png)
