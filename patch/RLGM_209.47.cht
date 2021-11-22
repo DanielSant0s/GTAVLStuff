@@ -442,7 +442,7 @@ P.S.: You can use that to deal with fucked typing stuff
 206665A0 3fc00000 //Decrease lowLOD distance to 1.5
 
 //20246F18 00000000 //Disable ped lock-on texture
-//20246DC8 0C1224E0 //Render grass
+20246DC8 0C1224E0 //Render grass
 
 
 
