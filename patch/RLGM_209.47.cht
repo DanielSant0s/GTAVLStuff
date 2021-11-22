@@ -1,0 +1,448 @@
+﻿"GTA V Legacy PreAlpha /ID RLGM_209.47"
+Mastercode
+90532640 0C1538EC
+E002FFFF 00700942
+2059D390 0C135858
+2059D3A4 00000000
+
+//DisableGetLookBehindForCar
+20249474 00000000
+
+//Texturas suaves
+201a2e04 3c024000
+201A2868 3c024000
+201A2888 3c024000
+201A2780 3c024000
+201A2998 3c03c000
+201A2E3C 3c023f80
+201A2E70 3c043f80
+201A2E74 3c03bf80
+2066343C 3d0f5c29
+
+------------------------------------------------Fixes------------------------------------------------
+
+//Linear Filtering for License Plates
+204A48A4 34630002 ori $v1, 2 RWLINEARFILTER
+
+//Fixed ammo for melee weapons in cheats
+2059D88C 24060001 li $s2 1 knife
+2059D998 24060001 li $s2 1 knife
+2059DB60 24060001 li $s2 1 chainsaw
+2059DC34 24060001 li $s2 1 chainsaw
+2059F67C 24060001 li $s2 1 parachute
+2059F3BC 24060001 li $s2 1 katana
+
+//014C cargen counter fix (by spaceeinstein)
+20295AF0 2C61FFFF slti => sltiu
+20295AF4 10000004 beqz => b
+
+//Don't clean the car BEFORE Pay 'n Spray doors close, as it gets cleaned later again anyway!
+202E41CC 00000000 nop
+
+//Fixed muzzleflash not showing from last bullet
+204071F4 00000000 nop
+
+//Help boxes showing with big message
+//Game seems to assume they can show together
+202AE3A0 00000000 nop
+
+ //Impound garages working correctly
+201C6088 0C0BAA58 //jal CGarages::IsPointWithinAnyGarage(CVector &)
+201C63C0 0C0BAA58 //jal CGarages::IsPointWithinAnyGarage(CVector &)
+201C6510 0C0BAA58 //jal CGarages::IsPointWithinAnyGarage(CVector &)
+
+//Impounding after busted works
+202A09A4 00000000 nop
+
+//FuckCarCompletely not fixing panels
+20162E40 00000000 nop
+
+//Weapon icon fix (crosshairs mess up rwRENDERSTATEZWRITEENABLE)
+202AAB44 00000000 nop
+202AB284 00000000 nop
+202AB2B4 00000000 nop
+
+//Fix 4th texture memory leak on effects
+203D4D50 8E240018
+203D4D64 AE200018
+
+-------------------------------------------------HUD-------------------------------------------------
+
+202AB9B8 3C024419 //Money Y Pos
+20663BE8 41f00000 //Money X Pos
+20663bc4 3fa66666 //Money Height
+20663bc8 3ee66666 //Money Width
+
+202ABA94 24060032 //Ammo X Pos
+202ABA90 24050263 //Ammo Y Pos
+202AA0B0 24040002 //Set Ammo Justify
+
+202B00B4 0c0aa8b4 //Enable Wanted
+202AA7B0 2a220005 //Limit Stars to 5
+202AA37C 24040002 //Fix Wanted Font Style
+202AA4C4 24060004 //Set Wanted Color
+20663C00 3f666666 //Wanted Height
+20663C04 3ecccccd //Wanted Width
+20663C08 41400000 //Wanted X Pos
+202AA398 24030263 //Wanted Y Pos
+20663C0C 3f8a3d71 //Wanted Shadow Height
+20663C10 3ef5c28f //Wanted Shadow Width
+202AA78C 3c023fc0 //Wanted Vertical Padding
+
+202AF58C 24040003 //Set Wasted/Busted to Pricedown font
+202AF654 24060000 //Set Wasted Colour
+20663480 3fa66666 //Set Wasted Width
+202AA374 24040000
+
+2026E204 24050067 //Radar sea section red
+2026E208 2406009b //Radar sea section green
+2026E20C 240700d5 //Radar sea section blue
+2026E214 240800FF //Radar sea section alpha
+
+2026E29C 240500FF //Radar texture section red
+2026E2A4 240600FF //Radar texture section green
+2026E2A8 240700FF //Radar texture section blue
+2026E2B0 240800FF //Radar texture section alpha
+
+2026E03C 3c0842BC //Radar Width
+2026E080 3c054298 //Radar Height
+2026E04C 3c0642AE //Radar X Pos
+2026E0A0 3c0443BF //Radar Y Pos
+
+-----------------------------------------------Controls----------------------------------------------
+
+2024A044 8482000E //Accelerate with R2
+2024A04C 8482000E //Accelerate with R2
+
+20249984 8482000A //Break with L2
+2024998C 8482000A //Break with L2
+
+20249348 84850008 //Set Plane Left Flap to L1
+20249354 84820030 //Set Plane Left Flap to L1
+20249380 8482000C //Set Plane Left Flap to L1
+20249398 84820034 //Set Plane Left Flap to L1
+
+202493E8 8485000C //Set Plane Right Flap to R1
+202493F4 84820034 //Set Plane Right Flap to R1
+20249420 84820008 //Set Plane Right Flap to R1
+20249438 84820030 //Set Plane Right Flap to R1
+
+2024983C 84820020 //Set Vehicle Weapon to Cross
+2024984C 84820048 //Set Vehicle Weapon to Cross
+20249774 84820020 //Set Plane Weapon to Cross
+204CBFD8 0C0924CC //Fix Jetpack Right Steering
+2017A074 0c0929a0 //Hydra Aim using Square Button
+
+20249488 84820026 //Set LookBehind NewState Button to R3
+202494A4 8482004E //Set LookBehind OldState Button to R3
+202494B8 84820026 //Set LookBehind NewState Button to R3
+202494D4 8482004E //Set LookBehind OldState Button to R3
+20202600 00000000 //Disable LookLeft and LookRight
+
+
+-------------------------------------------------Menu------------------------------------------------
+
+20242904 24050090 //li $a1, 0x90 | Display Button Red
+20242908 240600ee //li $a2, 0xee | Display Button Green
+2024290c 24070090 //li $a3, 0x90 | Display Button Blue
+
+20242888 24050090 //li $a1, 0x90 | Gallery Button Red
+2024288c 240600ee //li $a2, 0xee | Gallery Button Green
+20242890 24070090 //li $a3, 0x90 | Gallery Button Blue
+
+2024280C 24050090 //li $a1, 0x90 | Audio Button Red
+20242810 240600ee //li $a2, 0xee | Audio Button Green
+20242814 24070090 //li $a3, 0x90 | Audio Button Blue
+
+20242790 24050090 //li $a1, 0x90 | Controller Button Red
+20242794 240600ee //li $a2, 0xee | Controller Button Green
+20242798 24070090 //li $a3, 0x90 | Controller Button Blue
+
+20242714 24050090 //li $a1, 0x90 | Stats Button Red
+20242718 240600ee //li $a2, 0xee | Stats Button Green
+2024271C 24070090 //li $a3, 0x90 | Stats Button Blue
+
+20242698 24050090 //li $a1, 0x90 | Map Button Red
+2024269c 240600ee //li $a2, 0xee | Map Button Green
+202426a0 24070090 //li $a3, 0x90 | Map Button Blue
+
+2024261C 24050090 //li $a1, 0x90 | Brief Button Red
+20242620 240600ee //li $a2, 0xee | Brief Button Green
+20242624 24070090 //li $a3, 0x90 | Brief Button Blue
+
+202425A0 24050090 //li $a1, 0x90 | Game Button Red
+202425A4 240600ee //li $a2, 0xee | Game Button Green
+202425A8 24070090 //li $a3, 0x90 | Game Button Blue
+
+202425D0 2402001b //Set Game Label Y Pos
+2024264C 2402001b //Set Brief Label Y Pos
+202426C8 2402001b //Set Map Label Y Pos
+20242744 2402001b //Set Stats Label Y Pos
+202428B8 2402001b //Set Controller Label Y Pos
+2024283C 2402001b //Set Audio Label Y Pos
+202427C0 2402001b //Set Gallery Label Y Pos
+20242934 2402001b //Set Display Label Y Pos
+
+//Hide Menu Titles
+206019A0 00000000
+20601700 00000000
+20601A80 00000000
+206018C0 00000000
+20601620 00000000
+20602A40 00000000
+20601540 00000000
+206017E0 00000000
+
+//Zoom Minimap and remove bounds
+2023892c 3c0243e0 //lui $v0, 448.0
+20238920 3c034370 //lui $v1, 240.0
+
+//Remove map bounds
+20238AA8 3c020000 //lui $v0, $zero
+20238A90 3c020000 //lui $v0, $zero
+20238ACC 3c020000 //lui $v0, $zero
+20238A64 3c020000 //lui $v0, $zero
+
+
+202681F8 24060004 //Set Map Crosshair vertical color
+20268240 24060004 //Set Map Crosshair horizontal color
+20239500 c78c8ba4 //Redirect Map Location Y Scale
+
+20239554 24040001 //Redirect Map Location orientation
+20239558 2603FDA8 //Redirect Map Location Pos X
+
+20239704 240500FF //Set blips legend R
+20239708 240600FF //Set blips legend G
+2023970C 240700FF //Set blips legend B
+
+
+20239734 3c024402 //Set blips legend X stretch
+2023977C 3c024402 //Set blips legend X stretch
+20239720 3c0242C0 //Set blips legend Y stretch
+20239790 3c0241c8 //Set blips legend Y stretch
+20239680 3c024420 //Set blips legend wrap x
+
+202395F0 3C020000 //Remove blip legend rect
+20239658 00000000 //Remove blip legend text
+
+2023954C 24040001 //Set Map screen location edge width
+202394C4 24040002 //Set Map screen location font
+
+//Brief Background draw stretch
+202340E8 3c0243e0 //lui     $v0, 0x43e0
+202340EC 44826000 //mtc1    $v0, $f12
+202340F0 0c08ece4 //jal     sub_23B390
+202340F4 0200202d //move    $a0, $s0
+202340F8 3c024420 //lui     $v0, 0x4420
+202340FC 0200202d //move    $a0, $s0
+20234100 44826000 //mtc1    $v0, $f12
+20234104 0c08ece0 //jal     sub_23B380
+20234108 46000506 //mov.s   $f20, $f0
+2023410C 3c024420 //lui     $v0, 0x4420
+20234110 44820800 //mtc1    $v0, $f1
+20234114 00000000 //nop
+20234118 46000801 //sub.s   $f0, $f1, $f0
+2023411C e7a00080 //swc1    $f0, 0xA0+var_20($sp)
+20234120 e6740000 //swc1    $f20, 0($s3)
+20234124 ae420000 //sw      $v0, 0($s2)
+20234128 10000077 //b       def_2340E0
+2023412C ae200000 //sw      $zero, 0($s1)
+20234130 00000000 //nop
+20234134 00000000 //nop
+
+//New game Background draw stretch
+20234138 3c0243e0 //lui     $v0, 0x43e0
+2023413c 44826000 //mtc1    $v0, $f12
+20234140 0c08ece4 //jal     sub_23B390
+20234144 0200202d //move    $a0, $s0
+20234148 3c024420 //lui     $v0, 0x4420
+2023414c 0200202d //move    $a0, $s0
+20234150 44826000 //mtc1    $v0, $f12
+20234154 0c08ece0 //jal     sub_23B380
+20234158 46000506 //mov.s   $f20, $f0
+2023415c 3c024420 //lui     $v0, 0x4420
+20234160 44820800 //mtc1    $v0, $f1
+20234164 00000000 //nop
+20234168 46000801 //sub.s   $f0, $f1, $f0
+2023416c e7a00080 //swc1    $f0, 0xA0+var_20($sp)
+20234170 e6740000 //swc1    $f20, 0($s3)
+20234174 ae420000 //sw      $v0, 0($s2)
+20234178 10000063 //b       def_2340E0
+2023417c ae200000 //sw      $zero, 0($s1)
+20234180 00000000 //nop
+20234184 00000000 //nop
+
+Audio backgrounnd
+20234188 3c020000 //lui $v0, 512.0
+20234198 3c020000 //lui $v0, 512.0
+
+202341D0 3c0243e0 //lui $v0, 448.0
+202341e0 3c024420 //lui $v0, 512.0
+202341F4 3c030000 //lui $v1, 448.0
+202341F8 3c0243a0 //lui $v0, 448.0
+
+Display background
+20234188 3c0243e0 //lui $v0, 448.0
+20234198 3c024420 //lui $v0, 640.0
+
+Controller background
+20234234 3c0243e0 //lui $v0, 448.0
+20234244 3c024420 //lui $v0, 640.0
+20234258 3c024420 //lui $v0, 640.0
+
+Background
+2023427C 3c0243e0 //lui $v0, 448.0
+2023428C 3c024420 //lui $v0, 640.0
+202342A0 3c024420 //lui $v0, 640.0
+
+Background
+202342C4 3c0243e0 //lui $v0, 448.0
+202342d4 3c024420 //lui $v0, 640.0
+202342E8 3c024420 //lui $v0, 640.0
+
+20234A44 24040001 //SetMenuTextBody
+
+20234A84 240500FF //SetSelectedMenuItemRed
+//SetSelectedMenuItemGreen
+20234A88 240600FF 
+//SetSelectedMenuItemBlue
+20234A8C 240700FF 
+
+20234AA8 240500A0 //SetNonSelectedMenuItemRed
+20234AAC 240600A0 //SetNonSelectedMenuItemGreen
+20234AB0 240700A0 //SetNonSelectedMenuItemBlue
+
+20234A7C 24050080 //Set Selected wo/Menu Item Red
+20234A88 24060080 //Set Selected wo/Menu Item Green
+2023478C 24070080 //Set Selected wo/Menu Item Blue
+
+
+20663A8C 3ecccccd //SetMenuItemsWidth
+20242190 3c023ecc //SetMenuLabelsWidth
+202422D8 3c0343a0 //Menu Labels Up X Pos
+202422D4 3c0641a0 //Menu Labels Down X Pos
+20242300 46010000 //Set X Pos Label to Sum
+
+//Remove forward 4-item limit per menu row
+2023F1C8 24020002
+2023F1D4 24020003
+2023F1E0 24020004
+2023F1EC 24020005
+2023F1F8 24020006
+2023F204 24020007
+2023F210 24020008
+2023F21C 24020001
+
+//Remove reverse 4-item limit per menu row
+2023F0B8 24020008
+2023F0C4 24020001
+2023F0D0 24020002
+2023F0DC 24020003
+2023F0E8 24020004
+2023F0F4 24020005
+2023F100 24020006
+2023F10C 24020007
+
+//Neutralize pause menu vertical button switch
+2023F32C 24020001
+2023F338 24020002
+2023F344 24020003
+2023F350 24020004
+2023F35C 24020005
+2023F368 24020006
+2023F374 24020007
+2023F380 24020008
+
+202412B8 24040001 //Set Control Texts Font
+20241318 24060004 //Set Control Texts Color
+
+20241990 3C024408 //Set Select(X) on Map Section X Pos
+20241998 3C0243CC //Set Select(X) on Map Section Y Pos
+
+20241A3C 3C024408 //Set Select(X) on Stats Section X Pos
+20241A44 3C0243CC //Set Select(X) on Stats Section Y Pos
+
+20241AC0 3C024408 //Set Select(X) on Audio Section X Pos
+20241AC8 3C0243CC //Set Select(X) on Audio Section Y Pos
+
+20241B38 3C024408 //Set Select(X) on Display Section X Pos
+20241B40 3C0243CC //Set Select(X) on Display Section Y Pos
+
+20241B6C 3C024408 //Set Select(X) on Game/Controller Section X Pos
+20241B74 3C0243CC //Set Select(X) on Game/Controller Section Y Pos
+
+20241BC8 3C0243F6 //Set Back(Î”) X Pos
+20241BD0 3C0243CC //Set Back(Î”) Y Pos
+20241BD4 44826800 //convert this crap to a float
+20241BDC 00000000 //convert this crap to a float
+P.S.: You can use that to deal with fucked typing stuff
+
+20241E24 3C0443F1 //Set Move(^|V) X Pos
+20241E28 3C0343CC //Set Move(^|v) Y Pos
+
+20241E54 3C0443F1 //Set Move(<|>) X Pos
+20241E58 3C0343CC //Set Move(<|>) Y Pos
+
+20241C84 3C0443F1 //Set Adjust(<|>|^|v) X Pos
+20241C88 3C0343CC //Set Adjust(<|>|^|v) Y Pos
+
+20241CF0 3C0443CD //Set Adjust(<|>) X Pos
+20241CF4 3C0343CC //Set Adjust(<|>) Y Pos
+20241CF8 44836800 //convert this crap to a float
+20241D00 0C0A9B88 //convert this crap to a float
+20241D04 0040202D //convert this crap to a float
+20241D0C 00000000 //convert this crap to a float
+
+202414DC 3C024400 //Set ~x~ Legend on/off on Map screen x
+202414E4 3C0243CC //Set ~x~ Legend on/off on Map screen y
+202414E8 44826800 //convert this crap to a float
+202414F0 00000000 //convert this crap to a float
+
+2024215C 24040003 //Set Menu Fonts
+2024216C 24040001 //Set Menu Items edge
+
+20239C18 240500ff //Set Slider Selected to White
+20239C1C 240600ff //Set Slider Selected to White
+20239C20 240700ff //Set Slider Selected to White
+
+20239C5C 24050050 //Set Slider Background Red
+20239C60 24060050 //Set Slider Background Green
+20239C64 24070050 //Set Slider Background Blue
+20239C6C 240800ff //Set Slider Background Alpha
+
+20235860 3c024120 //SetMaximumBarSize - Brightness
+20235874 3c024120 //SetMinimumBarSize - Brightness
+202358A0 3C024100 //SetUniqueBarWidth - Brightness
+
+20235920 3c024120 //SetMaximumBarSize - Radio
+20235934 3c024120 //SetMinimumBarSize - Radio
+20235960 3C024100 //SetUniqueBarWidth - Radio
+
+202359FC 3c024120 //SetMaximumBarSize - SFX
+202359E8 3c024120 //SetMinimumBarSize - SFX
+20235A28 3C024100 //SetUniqueBarWidth - SFX
+
+------------------------------------------Folder Structure-------------------------------------------
+
+//205FA1A0 72746e69 INTRO\VLOGOS.RGM
+//205FA1A4 6c762f6f
+//205FA1A8 736f676f
+//205FA1AC 6d67722e 
+//205FA1B0 00000000
+
+//205FA1C0 72746e69 INTRO\VLOAD.RGM
+//205FA1C4 6c762f6f
+//205FA1C8 2e64616f
+//205FA1CC 006d6772
+
+---------------------------------------------Experimental--------------------------------------------
+
+2039B53C 24040001 //Set VSync Mode to 60 FPS
+2066659C 40000000 //Decrease LOD distance to 2.0
+206665A0 3fc00000 //Decrease lowLOD distance to 1.5
+
+//20246F18 00000000 //Disable ped lock-on texture
+20246DC8 0C1224E0 //Render grass
+
+
+
